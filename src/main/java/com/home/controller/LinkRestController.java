@@ -14,6 +14,7 @@ import com.home.service.MemberRegiserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -52,9 +53,7 @@ public class LinkRestController {
 
   @GetMapping("/list")
   public ResponseEntity<Page<Link>> list(
-      @PageableDefault(page = 0, size = 3, sort = {"createDate"}) Pageable pageable) {
-    log.warning(pageable.getPageNumber() + "★");
-
+      @PageableDefault(direction = Sort.Direction.DESC, page = 0, size = 3, sort = {"createDate"}) Pageable pageable) {
     return ResponseEntity.ok(linkRepo.findAll(pageable));
   }
 
@@ -116,9 +115,5 @@ public class LinkRestController {
     return ResponseEntity.ok(new Response(newJwtToken));
   }
 
-  // @ExceptionHandler(MethodArgumentNotValidException.class)
-  // public ResponseEntity<?> methodArgumentExceptionHandler(MethodArgumentNotValidException ex) {
-  //   ExceptionResponse response = new ExceptionResponse(LocalDateTime.now(), ex.getMessage(), "");
-  //   return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-  // }
+
 }
