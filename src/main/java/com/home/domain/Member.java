@@ -2,10 +2,8 @@ package com.home.domain;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -21,15 +19,13 @@ public class Member {
   private String username;
   private String password;
   private String name;
-  private String email;
   private LocalDateTime regdate;
   private Set<MemberRole> roles;
 
-  public Member(String username, String password, String name, String email, LocalDateTime regdate, Set<MemberRole> roles) {
+  public Member(String username, String password, String name, LocalDateTime regdate, Set<MemberRole> roles) {
     this.username = username;
     this.password = password;
     this.name = name;
-    this.email = email;
     this.regdate = regdate;
     this.roles = roles;
   }
